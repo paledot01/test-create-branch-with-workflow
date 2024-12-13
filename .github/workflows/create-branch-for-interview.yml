@@ -1,0 +1,30 @@
+name: Create Branch for Interview
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: "Username to grant push permissions"
+        required: true
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create new branch
+        run: |
+          git checkout -b ${{ github.event.inputs.branch_name }} origin/main
+          git push origin ${{ github.event.inputs.branch_name }}
+
+      - name: Set push permissions
+        run: |
+          gh api -X PUT \
+            -H "Accept: application/vnd.github.v3+json" \
+            /repos/${{ github.repository }}/collaborators/${{ github.event.inputs.username }} \
+            -f permission=push
+            echo "--> API Response: $response"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
