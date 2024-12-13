@@ -26,10 +26,11 @@ jobs:
 
       - name: Set push permissions
         run: |
-          gh api -X PUT \
-            -H "Accept: application/vnd.github.v3+json" \
-            /repos/${{ github.repository }}/collaborators/${{ github.event.inputs.username }} \
-            -f permission=push
-            echo "--> API Response: $response"
+          gh api \
+          --method PUT \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/${{ github.repository }}/collaborators/${{ github.event.inputs.username }} \
+          -f "permission=push"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
