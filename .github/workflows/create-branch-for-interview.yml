@@ -18,6 +18,8 @@ jobs:
         run: |
           git checkout -b ${{ github.event.inputs.username }} origin/main
           git push origin ${{ github.event.inputs.username }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set push permissions
         run: |
