@@ -7,8 +7,8 @@ on:
         description: "Username to grant push permissions"
         required: true
 
-permissions:
-  contents: write
+permissions: write-all
+  # contents: write
 
 jobs:
   create-branch:
