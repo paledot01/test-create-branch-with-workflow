@@ -16,8 +16,8 @@ jobs:
 
       - name: Create new branch
         run: |
-          git checkout -b ${{ github.event.inputs.branch_name }} origin/main
-          git push origin ${{ github.event.inputs.branch_name }}
+          git checkout -b ${{ github.event.inputs.username }} origin/main
+          git push origin ${{ github.event.inputs.username }}
 
       - name: Set push permissions
         run: |
