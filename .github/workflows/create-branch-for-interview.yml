@@ -13,6 +13,7 @@ permissions: write-all
 jobs:
   create-branch:
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +31,7 @@ jobs:
           --method PUT \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          /repos/${{ github.repository }}/collaborators/${{ github.event.inputs.username }}
+          /repos/${{ github.repository }}/collaborators/${{ github.event.inputs.username }} \
+          -f "permission=push"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
