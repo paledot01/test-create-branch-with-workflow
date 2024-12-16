@@ -13,17 +13,17 @@ permissions: write-all
 jobs:
   create-branch:
     runs-on: ubuntu-latest
-    permissions: write-all
+    # permissions: write-all
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create new branch
-        run: |
-          git checkout -b ${{ github.event.inputs.username }} origin/main
-          git push origin ${{ github.event.inputs.username }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create new branch
+      #   run: |
+      #     git checkout -b ${{ github.event.inputs.username }} origin/main
+      #     git push origin ${{ github.event.inputs.username }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set push permissions
         run: |
