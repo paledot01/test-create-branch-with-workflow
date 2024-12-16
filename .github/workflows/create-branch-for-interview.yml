@@ -37,4 +37,4 @@ jobs:
           /repos/${{ github.repository }}/collaborators/${{ github.event.inputs.username }} \
           -f "permission=push"
         env:
-          GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
+          GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
