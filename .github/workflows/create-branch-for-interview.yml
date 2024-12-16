@@ -34,4 +34,4 @@ jobs:
           /repos/${{ github.repository }}/collaborators/${{ github.event.inputs.username }} \
           -f "permission=push"
         env:
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          WORKFLOW-TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
