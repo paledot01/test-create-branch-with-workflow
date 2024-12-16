@@ -4,7 +4,7 @@ Este proyecto es un test de un workflow, para crear una rama con el nombre de un
 
 1. Crear un PAT(personal access token) classic. En tu cuenta de Github.
    - MiCuenta / Settings / Developer settings / Personal access tokens / Tokens (classic)
-2. Establecer los permisos necesarios.
+2. Establecer los permisos de "repo" (Para nuestro caso).
 3. Guardar el PAT como “secret” en tu repositorio:
    - MiRepositorio / Settings / Secrets and variables / Actions / Repository secrets / New repository secret
 4. Añadir el "secret" en el workflow: GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
