@@ -1,3 +1,9 @@
+# inputs: permite agregar parámetros antes de ejecutar el workflow
+# workflow_dispatch: permite ejecutar el workflow manualmente
+# gh api: permite hacer llamadas a la API de GitHub
+# GH_TOKEN: variable de github, debe tener exactamente el nombre GH_TOKEN
+# My_SECRET_TOKEN: PAT (Personal Access Token) de GitHub creado como "Repository secrets"
+
 name: Create Branch for Interview
 
 on:
