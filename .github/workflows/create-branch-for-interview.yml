@@ -4,6 +4,9 @@
 # GH_TOKEN: variable de github, debe tener exactamente el nombre GH_TOKEN
 # My_SECRET_TOKEN: PAT (Personal Access Token) de GitHub creado como "Repository secrets"
 
+# Este workflow crea una nueva rama con el nombre del usuario que se le pase como parámetro y
+# invita al usuario a colaborar en el repositorio con permisos de push.
+
 name: Create Branch for Interview
 
 on:
