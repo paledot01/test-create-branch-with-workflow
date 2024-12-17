@@ -1,4 +1,4 @@
-name: Create Branch for Interview
+name: Create Repository for Interview
 
 on:
   workflow_dispatch:
