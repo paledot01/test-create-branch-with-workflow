@@ -1,19 +1,10 @@
-# inputs: permite agregar parámetros antes de ejecutar el workflow
-# workflow_dispatch: permite ejecutar el workflow manualmente
-# gh api: permite hacer llamadas a la API de GitHub
-# GH_TOKEN: variable de github, debe tener exactamente el nombre GH_TOKEN
-# My_SECRET_TOKEN: PAT (Personal Access Token) de GitHub creado como "Repository secrets"
-
-# Este workflow crea una nueva rama con el nombre del usuario que se le pase como parámetro y
-# invita al usuario a colaborar en el repositorio con permisos de push.
-
 name: Create Branch for Interview
 
 on:
   workflow_dispatch:
     inputs:
       username:
-        description: "Username to grant push permissions"
+        description: "Username of the candidate"
         required: true
 
 jobs:
@@ -23,12 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create new branch
+      - name: Create new interview branch
         run: |
-          git checkout -b ${{ github.event.inputs.username }} origin/main
-          git push origin ${{ github.event.inputs.username }}
+          git checkout -b interview-${{ github.event.inputs.username }} origin/main
+          git push origin interview-${{ github.event.inputs.username }}
 
-      - name: Set push permissions
+      - name: Set push permissions for Candidate
         run: |
           gh api \
           --method PUT \
