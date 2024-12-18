@@ -34,6 +34,7 @@ jobs:
           repository: ${{ github.repository }}
           ref: main
 
+      # apunta a otro remoto para obtener su rama main
       - name: Create new repository
         run: |
           gh repo create interview-${{ github.event.inputs.username }} --public --clone
@@ -43,7 +44,7 @@ jobs:
           git checkout -b main base/main
           git push -u origin main
         env:
-          GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
+          GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
 
       # - name: Set push permissions for Candidate
       #   run: |
