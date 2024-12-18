@@ -12,6 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Duplicate repository
+        run: |
+          gh repo create interview-${{ github.event.inputs.username }} --private
+          git clone --bare https://github.com/${{ github.repository }}.git
+          cd $(basename ${{ github.repository }} .git).git
+          git push --mirror https://${{ secrets.SUPER_TOKEN }}@github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+        env:
+          GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
       # - uses: actions/checkout@v4
 
       # - name: Create new interview branch
@@ -38,16 +46,9 @@ jobs:
       - name: 1 Create new repository
         run: |
           gh repo create interview-${{ github.event.inputs.username }} --private
-          sleep 30
+          sleep 12
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
-
-      # clona el repositorio
-      # - name: 2 Checkout base repository
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: ${{ github.repository }}
-      #     ref: main
 
       - name: 3 Set new remote
         run: |
