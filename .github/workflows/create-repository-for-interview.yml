@@ -11,46 +11,26 @@ jobs:
   create-branch:
     runs-on: ubuntu-latest
 
+    # env:
+    #   USERNAME: ${{ github.event.inputs.username }}
+    #   REPO_OWNER: ${{ github.repository_owner }}
+    #   REPO: ${{ github.repository }}
+    #   GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
+
     steps:
       - name: Duplicate repository
         run: |
-          gh repo create interview-${{ github.event.inputs.username }} --private
-          git clone --bare https://github.com/${{ github.repository }}.git
-          cd $(basename ${{ github.repository }} .git).git
-          git push --mirror https://${{ secrets.SUPER_TOKEN }}@github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+          gh repo create interview-${{ USERNAME }} --private
+          git clone --bare https://github.com/${{ env.REPO }}.git
+          cd $(basename ${{ REPO  }} .git).git
+          git push --mirror https://${{ GH_TOKEN }}@github.com/${{ REPO_OWNER }}/interview-${{ USERNAME }}.git
         env:
+          REPO: ${{ github.repository }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          USERNAME: ${{ github.event.inputs.username }}
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
-      # - uses: actions/checkout@v4
 
-      # - name: Create new interview branch
-      #   run: |
-      #     git checkout -b interview-${{ github.event.inputs.username }} origin/main
-      #     git push origin interview-${{ github.event.inputs.username }}
-      # - name: Create new repository
-      #   run: |
-      #     gh repo create interview-${{ github.event.inputs.username }} --public --clone
-      #     cd interview-${{ github.event.inputs.username }}
-      #     git remote add origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
-      #     git push -u origin main
-      #   env:
-      #     GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
-
-      # clona el repositorio
-      # - name: Checkout base repository
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: ${{ github.repository }}
-      #     ref: main
-
-      # apunta a otro remoto para obtener su rama main
-      # - name: Duplicate repository
-      #     git clone https://github.com/${{ github.repository }}.git
-      #     cd $(basename ${{ github.repository }} .git)
-      #   run: |
-      #   env:
-      #     GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
-
-      # - name: Set push permissions for Candidate
+      # - name: Set push permissions for candidate
       #   run: |
       #     gh api \
       #     --method PUT \
@@ -58,8 +38,6 @@ jobs:
       #     -H "X-GitHub-Api-Version: 2022-11-28" \
       #     /repos/${{ github.repository }}/collaborators/${{ github.event.inputs.username }} \
       #     -f "permission=push"
-      #   env:
-      #     GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
 
       # gh repo create interview-${{ github.event.inputs.username }} --public --clone
       # cd interview-${{ github.event.inputs.username }}
@@ -70,6 +48,5 @@ jobs:
       # git remote add origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
       # git push -u origin main
 
-
-          # git remote set-url origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
-          # git remote -v
+      # git remote set-url origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+      # git remote -v

@@ -19,7 +19,7 @@ jobs:
           git checkout -b interview-${{ github.event.inputs.username }} origin/main
           git push origin interview-${{ github.event.inputs.username }}
 
-      - name: Set push permissions for Candidate
+      - name: Set push permissions for candidate
         run: |
           gh api \
           --method PUT \
