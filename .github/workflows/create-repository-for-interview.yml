@@ -16,6 +16,11 @@ jobs:
     #   REPO_OWNER: ${{ github.repository_owner }}
     #   REPO: ${{ github.repository }}
     #   GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
+    env:
+      REPO: ${{ github.repository }}
+      REPO_OWNER: ${{ github.repository_owner }}
+      USERNAME: ${{ github.event.inputs.username }}
+      GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
     steps:
       - name: Duplicate repository
@@ -24,11 +29,6 @@ jobs:
           git clone --bare https://github.com/${REPO}.git
           cd $(basename ${REPO} .git).git
           git push --mirror https://${GH_TOKEN}@github.com/${REPO_OWNER}/interview-${USERNAME}.git
-        env:
-          REPO: ${{ github.repository }}
-          REPO_OWNER: ${{ github.repository_owner }}
-          USERNAME: ${{ github.event.inputs.username }}
-          GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
       # - name: Set push permissions for candidate
       #   run: |
