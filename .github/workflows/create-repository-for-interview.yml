@@ -38,7 +38,7 @@ jobs:
       - name: 1 Create new repository
         run: |
           gh repo create interview-${{ github.event.inputs.username }} --private
-          sleep 20
+          sleep 30
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
