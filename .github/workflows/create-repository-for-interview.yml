@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       username:
-        description: "Username of the candidate"
+        description: "Github username of the candidate"
         required: true
 
 jobs:
