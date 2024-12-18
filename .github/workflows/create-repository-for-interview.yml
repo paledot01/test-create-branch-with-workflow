@@ -35,19 +35,32 @@ jobs:
       #     ref: main
 
       # apunta a otro remoto para obtener su rama main
-      - name: Create new repository
+      - name: 1 Create new repository
         run: |
           gh repo create interview-${{ github.event.inputs.username }} --public --clone
-          cd interview-${{ github.event.inputs.username }}
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
-      - name: Duplicate repository
-          git clone https://github.com/${{ github.repository }}.git
-          cd $(basename ${{ github.repository }} .git)
+      # clona el repositorio
+      - name: 2 Checkout base repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: main
+
+      - name: 3 Set new remote
         run: |
+          git remote set-url origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+          git remote -v
+          git push --mirror
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
+      # - name: Duplicate repository
+      #     git clone https://github.com/${{ github.repository }}.git
+      #     cd $(basename ${{ github.repository }} .git)
+      #   run: |
+      #   env:
+      #     GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
       # - name: Set push permissions for Candidate
       #   run: |
