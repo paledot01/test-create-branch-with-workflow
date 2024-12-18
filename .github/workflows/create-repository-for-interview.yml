@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      REPO: ${{ github.repository }}
-      REPO_OWNER: ${{ github.repository_owner }}
+      REPOSITORY: ${{ github.repository }}
+      REPOSITORY_OWNER: ${{ github.repository_owner }}
       USERNAME: ${{ github.event.inputs.username }}
       GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
 
@@ -25,9 +25,9 @@ jobs:
       - name: Duplicate repository
         run: |
           gh repo create interview-${USERNAME} --private
-          git clone --bare https://github.com/${REPO}.git
-          cd $(basename ${REPO} .git).git
-          git push --mirror https://${GH_TOKEN}@github.com/${REPO_OWNER}/interview-${USERNAME}.git
+          git clone --bare https://github.com/${REPOSITORY}.git
+          cd $(basename ${REPOSITORY} .git).git
+          git push --mirror https://${GH_TOKEN}@github.com/${REPOSITORY_OWNER}/interview-${USERNAME}.git
 
       - name: Set push permissions for candidate
         run: |
@@ -35,5 +35,5 @@ jobs:
           --method PUT \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          /repos/${REPO_OWNER}/interview-${USERNAME}/collaborators/${USERNAME} \
+          /repos/${REPOSITORY_OWNER}/interview-${USERNAME}/collaborators/${USERNAME} \
           -f "permission=push"
