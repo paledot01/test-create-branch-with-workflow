@@ -38,7 +38,7 @@ jobs:
         run: |
           gh repo create interview-${{ github.event.inputs.username }} --public --clone
           cd interview-${{ github.event.inputs.username }}
-          git remote add base https://github.com/${{ github.repository_owner }}/${{ github.repository }}.git
+          git remote add base https://github.com/${{ github.repository }}.git
           git fetch base
           git checkout -b main base/main
           git push -u origin main
