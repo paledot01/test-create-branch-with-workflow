@@ -27,6 +27,7 @@ jobs:
       #   env:
       #     GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
 
+      # clona el repositorio
       - name: Checkout base repository
         uses: actions/checkout@v4
         with:
