@@ -43,14 +43,16 @@ jobs:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
       # clona el repositorio
-      - name: 2 Checkout base repository
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository }}
-          ref: main
+      # - name: 2 Checkout base repository
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: ${{ github.repository }}
+      #     ref: main
 
       - name: 3 Set new remote
         run: |
+          git clone --bare https://github.com/${{ github.repository }}.git
+          cd $(basename ${{ github.repository }} .git)
           git push --mirror https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
