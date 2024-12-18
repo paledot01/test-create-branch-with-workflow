@@ -19,7 +19,7 @@ jobs:
       REPOSITORY: ${{ github.repository }}
       REPOSITORY_OWNER: ${{ github.repository_owner }}
       USERNAME: ${{ github.event.inputs.username }}
-      GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
+      GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_4 }}
 
     steps:
       - name: Duplicate repository
