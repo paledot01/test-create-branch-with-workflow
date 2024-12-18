@@ -53,7 +53,7 @@ jobs:
         run: |
           git clone --bare https://github.com/${{ github.repository }}.git
           cd $(basename ${{ github.repository }} .git).git
-          git push --mirror https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+          git push --mirror https://${{ secrets.SUPER_TOKEN }}@github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
       # - name: Duplicate repository
