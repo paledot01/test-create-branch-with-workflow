@@ -1,4 +1,4 @@
-Este proyecto es un test de un workflow, para crear una rama con el nombre de un usuario que se le pase como parametro, y luego invita a este usuario a colaborar en el mismo repositorio. La creacion de la rama se realiza con Git CLI (git) y la invitación al usuario se realiza con GitHub CLI (gh).
+Este proyecto es un test de un workflow, para crear una rama y un repo con el nombre de un usuario que se le pase como parametro, y luego invita a este usuario a colaborar en el mismo o nuevo repositorio. La creacion de la rama o el repo se realiza con Git CLI (git) y la invitación al usuario se realiza con GitHub CLI (gh).
 
 #### Pasos para la creacion del TOKEN:
 
