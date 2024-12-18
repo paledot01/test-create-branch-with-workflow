@@ -37,7 +37,7 @@ jobs:
       # apunta a otro remoto para obtener su rama main
       - name: 1 Create new repository
         run: |
-          gh repo create interview-${{ github.event.inputs.username }} --public --clone
+          gh repo create interview-${{ github.event.inputs.username }} --public
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
