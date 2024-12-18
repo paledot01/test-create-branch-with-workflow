@@ -43,20 +43,6 @@ jobs:
       #     ref: main
 
       # apunta a otro remoto para obtener su rama main
-      - name: 1 Create new repository
-        run: |
-          gh repo create interview-${{ github.event.inputs.username }} --private
-          sleep 12
-        env:
-          GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
-
-      - name: 3 Set new remote
-        run: |
-          git clone --bare https://github.com/${{ github.repository }}.git
-          cd $(basename ${{ github.repository }} .git).git
-          git push --mirror https://${{ secrets.SUPER_TOKEN }}@github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
-        env:
-          GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
       # - name: Duplicate repository
       #     git clone https://github.com/${{ github.repository }}.git
       #     cd $(basename ${{ github.repository }} .git)
