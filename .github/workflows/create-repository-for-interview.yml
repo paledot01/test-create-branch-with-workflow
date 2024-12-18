@@ -28,29 +28,26 @@ jobs:
       #     GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
 
       # clona el repositorio
-      - name: Checkout base repository
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository }}
-          ref: main
+      # - name: Checkout base repository
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: ${{ github.repository }}
+      #     ref: main
 
       # apunta a otro remoto para obtener su rama main
       - name: Create new repository
         run: |
-          git clone https://github.com/${{ github.repository }}.git
-          cd $(basename ${{ github.repository }} .git)
+          gh repo create interview-${{ github.event.inputs.username }} --public --clone
+          cd interview-${{ github.event.inputs.username }}
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
-          # gh repo create interview-${{ github.event.inputs.username }} --public --clone
-          # cd interview-${{ github.event.inputs.username }}
-          # git remote add base https://github.com/${{ github.repository }}.git
-          # git fetch base
-          # git checkout -b main base/main
-          # git remote remove origin
-          # git remote add origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
-          # git push -u origin main
-
+      - name: Duplicate repository
+          git clone https://github.com/${{ github.repository }}.git
+          cd $(basename ${{ github.repository }} .git)
+        run: |
+        env:
+          GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
 
       # - name: Set push permissions for Candidate
       #   run: |
@@ -62,3 +59,12 @@ jobs:
       #     -f "permission=push"
       #   env:
       #     GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
+
+      # gh repo create interview-${{ github.event.inputs.username }} --public --clone
+      # cd interview-${{ github.event.inputs.username }}
+      # git remote add base https://github.com/${{ github.repository }}.git
+      # git fetch base
+      # git checkout -b main base/main
+      # git remote remove origin
+      # git remote add origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+      # git push -u origin main
