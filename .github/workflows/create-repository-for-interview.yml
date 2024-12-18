@@ -20,10 +20,10 @@ jobs:
     steps:
       - name: Duplicate repository
         run: |
-          gh repo create interview-${{ USERNAME }} --private
-          git clone --bare https://github.com/${{ env.REPO }}.git
-          cd $(basename ${{ REPO  }} .git).git
-          git push --mirror https://${{ GH_TOKEN }}@github.com/${{ REPO_OWNER }}/interview-${{ USERNAME }}.git
+          gh repo create interview-${USERNAME} --private
+          git clone --bare https://github.com/${REPO}.git
+          cd $(basename ${REPO} .git).git
+          git push --mirror https://${GH_TOKEN}@github.com/${REPO_OWNER}/interview-${USERNAME}.git
         env:
           REPO: ${{ github.repository }}
           REPO_OWNER: ${{ github.repository_owner }}
