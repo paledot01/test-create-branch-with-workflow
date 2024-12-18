@@ -18,11 +18,28 @@ jobs:
       #   run: |
       #     git checkout -b interview-${{ github.event.inputs.username }} origin/main
       #     git push origin interview-${{ github.event.inputs.username }}
+      # - name: Create new repository
+      #   run: |
+      #     gh repo create interview-${{ github.event.inputs.username }} --public --clone
+      #     cd interview-${{ github.event.inputs.username }}
+      #     git remote add origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+      #     git push -u origin main
+      #   env:
+      #     GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
+
+      - name: Checkout base repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: main
+
       - name: Create new repository
         run: |
           gh repo create interview-${{ github.event.inputs.username }} --public --clone
           cd interview-${{ github.event.inputs.username }}
-          git remote add origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+          git remote add base https://github.com/${{ github.repository_owner }}/${{ github.repository }}.git
+          git fetch base
+          git checkout -b main base/main
           git push -u origin main
         env:
           GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN_2 }}
