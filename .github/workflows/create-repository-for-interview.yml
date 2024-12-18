@@ -1,6 +1,4 @@
 # El token remplaza el login y password de github que se necesita para hacer push: https://${GH_TOKEN}@github.com/${REPO_OWNER}/interview-${USERNAME}.git
-# 
-#
 
 name: Create Repository for Interview
 

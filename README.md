@@ -4,7 +4,7 @@ Este proyecto es un test de un workflow, para crear una rama con el nombre de un
 
 1. Crear un PAT(personal access token) classic. En tu cuenta de Github.
    - MiCuenta / Settings / Developer settings / Personal access tokens / Tokens (classic)
-2. En "Select scopes" establecer los permisos de "repo" (Para nuestro caso).
+2. En "Select scopes" establecer los permisos de "repo" (para el workflow create-branch-for-interview) y los permisos de "repo" y "workflow" (para el workflow create-repository-for-interview).
 3. Guardar el PAT como “secret” en tu repositorio:
    - MiRepositorio / Settings / Secrets and variables / Actions / Repository secrets / New repository secret
 4. Añadir el "secret" en el workflow: GH_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
@@ -17,3 +17,4 @@ Nota: Para usar GitHub CLI, se debe establecer la variable de entorno GH_TOKEN (
 - [GitHub CLI api: Add a repository collaborator](https://docs.github.com/en/rest/collaborators/collaborators?apiVersion=2022-11-28#add-a-repository-collaborator)
 - [Permissions in workflows](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#permissions)
 - [ERROR: Github POST](https://stackoverflow.com/questions/70435286/resource-not-accessible-by-integration-on-github-post-repos-owner-repo-ac)
+- [Duplicating a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository?platform=windows)
