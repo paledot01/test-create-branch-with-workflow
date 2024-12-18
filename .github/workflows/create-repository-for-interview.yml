@@ -37,16 +37,20 @@ jobs:
       # apunta a otro remoto para obtener su rama main
       - name: Create new repository
         run: |
-          gh repo create interview-${{ github.event.inputs.username }} --public --clone
-          cd interview-${{ github.event.inputs.username }}
-          git remote add base https://github.com/${{ github.repository }}.git
-          git fetch base
-          git checkout -b main base/main
-          git remote remove origin
-          git remote add origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
-          git push -u origin main
+          git clone https://github.com/${{ github.repository }}.git
+          cd ${{ github.repository }}
         env:
           GH_TOKEN: ${{ secrets.SUPER_TOKEN }}
+
+          # gh repo create interview-${{ github.event.inputs.username }} --public --clone
+          # cd interview-${{ github.event.inputs.username }}
+          # git remote add base https://github.com/${{ github.repository }}.git
+          # git fetch base
+          # git checkout -b main base/main
+          # git remote remove origin
+          # git remote add origin https://github.com/${{ github.repository_owner }}/interview-${{ github.event.inputs.username }}.git
+          # git push -u origin main
+
 
       # - name: Set push permissions for Candidate
       #   run: |
